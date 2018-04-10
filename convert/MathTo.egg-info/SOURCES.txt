@@ -1,0 +1,15 @@
+setup.py
+MathTo/MathToC.py
+MathTo/MathToCpp.py
+MathTo/MathToJS.py
+MathTo/MathToJava.py
+MathTo/MathToLang.py
+MathTo/MathToMatlab.py
+MathTo/MathToPython.py
+MathTo/MathToR.py
+MathTo/Translation.py
+MathTo/__init__.py
+MathTo.egg-info/PKG-INFO
+MathTo.egg-info/SOURCES.txt
+MathTo.egg-info/dependency_links.txt
+MathTo.egg-info/top_level.txt
