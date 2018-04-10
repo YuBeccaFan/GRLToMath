@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## GRLToMath
 Multi-Lingual Function Generation from Goal Models and A transformation from GRL models to mathematical functions.
 
