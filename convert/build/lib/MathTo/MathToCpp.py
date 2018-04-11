@@ -8,7 +8,9 @@ class convertToCpp(convertToLang):
 		
 	def writeMath(self):
 		#how to get file_name and Model name 
-		file_name = str(self.dep)+'.cpp'
+		file_name = str(self.dep)+'/'+str(self.dep)+'.cpp'
+		if not os.path.exists(str(self.dep)):
+			os.makedirs(str(self.dep))
 		with open(file_name,'w+') as file:
 			writeList = []
 			writeList.append('#include <iostream>\nusing namespace std;\n\n')

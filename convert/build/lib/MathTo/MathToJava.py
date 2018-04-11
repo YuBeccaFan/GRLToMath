@@ -11,7 +11,9 @@ class convertToJava(convertToLang):
 		
 	def writeMath(self):
 		#how to get file_name and Model name 
-		file_name = str(self.dep)+'.java'
+		file_name = str(self.dep)+'/'+str(self.dep)+'.java'
+		if not os.path.exists(str(self.dep)):
+			os.makedirs(str(self.dep))
 		with open(file_name,'w+') as file:
 			writeList = []
 			writeList.append('public class Model{\n')

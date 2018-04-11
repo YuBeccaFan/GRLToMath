@@ -32,28 +32,34 @@ def Translate(formula,dep,args,Type):
     #print func
     if Type == "java":
         convertToJava(jcode(func),dep,args).writeMath()
+        print 'java'
         return
     if Type == "python":
-        print "python !"
+        print "python"
         from sympy.printing.pycode import (PythonCodePrinter,pycode)
         pr = PythonCodePrinter()
         convertToPy( pr.doprint(func),dep,args).writeMath()
         return
     if Type == "javascript":
         convertToJS(jscode(func),dep,args).writeMath()
+        print 'js'
         return
     if Type == "matlab":
+        print 'matlab'
         convertToMatlab(octave_code(func),dep,args).writeMath()
         return
 
     if Type == "c":
         convertToC(ccode(func),dep,args).writeMath()
+        print 'c'
         return
     if Type == "c++":
         convertToCpp(cxxcode(func),dep,args).writeMath()
+        print "c++"
         return
     if Type == "r":
         convertToR(rcode(func),dep,args).writeMath()
+        print "R"
         return
 
 

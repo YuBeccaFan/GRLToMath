@@ -8,7 +8,9 @@ class convertToC(convertToLang):
 
 	def writeMath(self):
 		#how to get file_name and Model name 
-		file_name = str(self.dep)+'.c'
+		file_name = str(self.dep)+'/'+str(self.dep)+'.c'
+		if not os.path.exists(str(self.dep)):
+			os.makedirs(str(self.dep))
 		with open(file_name,'w+') as file:
 			writeList = []
 			writeList.append('#include <stdio.h>\n\n')

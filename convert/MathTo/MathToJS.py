@@ -13,7 +13,9 @@ class convertToJS(convertToLang):
 	}'''
 	def writeMath(self):
 		#how to get file_name and Model name 
-		file_name = str(self.dep)+'.js'
+		file_name = str(self.dep)+'/'+str(self.dep)+'.js'
+		if not os.path.exists(str(self.dep)):
+			os.makedirs(str(self.dep))
 		with open(file_name,'w+') as file:
 			writeList = []
 			variables = [ str(x) for x in self.args]
