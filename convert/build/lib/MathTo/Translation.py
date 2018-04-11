@@ -17,38 +17,21 @@ init_printing()
 	C++
 	JavaScript
 	Python
+    R
 '''
-'''
-formula e.g Max(x,y)
-dep dependent variable
-args the element in formula
-Type :
-Java
-Matlab
-C
-C++
-JavaScript
-Python
-'''
-def Translate(formula,dep,args,Type):
-    #func = formula.split('(')
-    #if(func[0] == "Piecewise"):
 
-    
+def Translate(formula,dep,args,Type):
+
     i = 0
     for arg in args:
-        print arg
         arg = str(arg)+"="+"Symbol"+"("+"'"+str(arg)+"'"+")"
         i = i+1
-        #print arg
         exec(arg)
         
     func = simplify(eval(formula)).evalf()
-    print func
+    #print func
     if Type == "java":
-        #print jcode(eval(func))
         convertToJava(jcode(func),dep,args).writeMath()
-        #MathToJava.writeMath(jcode(eval(formula)),dep,args)
         return
     if Type == "python":
         print "python !"
