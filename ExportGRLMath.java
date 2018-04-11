@@ -94,11 +94,6 @@ public class ExportGRLMath implements IURNExport {
 	}
     }
 
-    /**
-     * find out the variable and write them into files.
-     * 
-     * @throws IOException
-     */
     private void writeHead() throws IOException {
 
 	write("from MathTo import * \n" + "from sympy import *\n");
@@ -107,10 +102,14 @@ public class ExportGRLMath implements IURNExport {
 	write("\n");
     }
 
-    // 给每个element都建个formula 还是
+    /**
+     * create formulas for each elements
+     * 
+     * @param urn
+     * @throws IOException
+     */
     private void writeFormula(URNspec urn) throws IOException {
 
-	// elementList = new StringBuffer();
 	eleForMap = new HashMap<IntentionalElement, StringBuffer>();
 	StringBuffer eleFormula;
 	StringBuffer function;
@@ -130,6 +129,7 @@ public class ExportGRLMath implements IURNExport {
 	    write("\n");
 	}
 	write("\n");
+	// iterate all the leaf element
 	for (Iterator it = urn.getGrlspec().getIntElements().iterator(); it.hasNext();) {
 	    IntentionalElement element = (IntentionalElement) it.next();
 	    eleFormula = new StringBuffer();
@@ -137,18 +137,17 @@ public class ExportGRLMath implements IURNExport {
 	    function.append(modifyName(element.getName()));
 	    // if the element is the leaf
 	    if (element.getLinksDest().size() == 0) {
-		System.out.println(element.getName() + "leaf");
+		// System.out.println(element.getName() + "leaf");
 		if (element.getType().getName().compareTo("Indicator") == 0) {
 		    Indicator indicator = (Indicator) element;
-		    if(indicator.getWorstValue()==indicator.getTargetValue()) {
-			eleFormula.append(element.getName());
-		    }else {
+		    if (indicator.getWorstValue() == indicator.getTargetValue()) {
+			eleFormula.append(modifyName(element.getName()));
+		    } else {
 			StringBuffer indicatorFor = indicatorFor(element);
-			    eleFormula.append(indicatorFor);
-			    function.append(Equal);
-			    function.append(eleFormula);
+			eleFormula.append(indicatorFor);
+			function.append(Equal);
+			function.append(eleFormula);
 		    }
-		    
 		} else {
 		    eleFormula.append(modifyName(element.getName()));
 		}
@@ -156,7 +155,6 @@ public class ExportGRLMath implements IURNExport {
 		eleForMap.put(element, eleFormula);
 		System.out.println("ele's for" + element.getName() + ":" + eleFormula);
 	    }
-
 	}
 	for (Iterator it = urn.getGrlspec().getIntElements().iterator(); it.hasNext();) {
 	    IntentionalElement element = (IntentionalElement) it.next();
@@ -165,7 +163,6 @@ public class ExportGRLMath implements IURNExport {
 	    function.append(modifyName(element.getName()));
 
 	    if (element.getLinksDest().size() != 0) {
-
 		eleFormula.append(writeLink(element));
 		System.out.println("ele's for" + element.getName() + ":" + eleFormula);
 		function.append(Equal);
@@ -173,23 +170,24 @@ public class ExportGRLMath implements IURNExport {
 		System.out.println(element.getName() + function);
 		write(function.toString());
 		write("\n");
-		// }
 		eleForMap.put(element, eleFormula);
 	    }
-
 	}
 	write("\n");
-
     }
 
-    // have a big problem
+    /**
+     * 
+     * @param element
+     * @return
+     * @throws IOException
+     */
     private StringBuffer writeLink(IntentionalElement element) throws IOException {
 
 	StringBuffer formula = new StringBuffer();
 	StringBuffer decomFor = new StringBuffer();
 	StringBuffer conFor = new StringBuffer();
 	StringBuffer depenFor = new StringBuffer();
-	StringBuffer varList = new StringBuffer();
 	List<String> StrEle = new ArrayList<String>();// the elements' str
 
 	Map<String, List<IntentionalElement>> eleMap = new HashMap<String, List<IntentionalElement>>();
@@ -211,7 +209,6 @@ public class ExportGRLMath implements IURNExport {
 	    if (scrLink instanceof Dependency) {
 		depenList.add(srcElement);
 		elementSet.add("'" + modifyName(srcElement.getName()) + "'");
-
 	    }
 	    if (scrLink instanceof Contribution) {
 		conList.add(srcElement);
@@ -225,17 +222,13 @@ public class ExportGRLMath implements IURNExport {
 	String funcTpye = " ";
 	if (!decomList.isEmpty()) {
 	    if (element.getDecompositionType().getName() == "And")
-		// decomFor.append("Min");
 		funcTpye = "Min";
 	    if (element.getDecompositionType().getName() == "Or")
-		// decomFor.append("Max");
 		funcTpye = "Max";
 	    if (element.getDecompositionType().getName() == "Xor")
-		// decomFor.append("Max");
 		funcTpye = "Max";
 
 	    decomFor.append(writeDecomMaxMin(decomList, funcTpye));
-
 	    formula = decomFor;
 	}
 
@@ -276,16 +269,16 @@ public class ExportGRLMath implements IURNExport {
 	    formula = depenFor;
 	}
 	System.out.println(formula);
-	if (element.getType().getName().compareTo("Indicator") == 0) {
-	    System.out.println("indicator!" + element.getName() + "\n");
-
-	    StringBuffer indicatorFor = indicatorFor(element);
-	    System.out.println(indicatorFor.toString());
-	    // formula = indicatorFor;
-	    formula = new StringBuffer(
-		    indicatorFor.toString().replaceAll(modifyName(element.getName()), formula.toString()));
-	    System.out.println(formula);
-	}
+//	if (element.getType().getName().compareTo("Indicator") == 0) {
+//	    System.out.println("indicator!" + element.getName() + "\n");
+//
+//	    StringBuffer indicatorFor = indicatorFor(element);
+//	    System.out.println(indicatorFor.toString());
+//	    
+//	    formula = new StringBuffer(
+//		    indicatorFor.toString().replaceAll(modifyName(element.getName()), formula.toString()));
+//	    System.out.println(formula);
+//	}
 	for (Iterator it = srcList.iterator(); it.hasNext();) {
 	    IntentionalElement subEle = (IntentionalElement) it.next();
 	    // if sub element is not the leaf.
@@ -299,7 +292,6 @@ public class ExportGRLMath implements IURNExport {
 		}
 		formula = new StringBuffer(
 			formula.toString().replaceAll(modifyName(subEle.getName()), subFor.toString()));
-
 	    }
 	    // if the element is indicator
 	    if (subEle.getType().getName().compareTo("Indicator") == 0) {
@@ -308,7 +300,6 @@ public class ExportGRLMath implements IURNExport {
 		    indicatorFor = indicatorFor(subEle);
 		} else {
 		    indicatorFor = eleForMap.get(subEle);
-
 		    formula = new StringBuffer(
 			    formula.toString().replaceAll(modifyName(subEle.getName()), indicatorFor.toString()));
 		}
@@ -318,7 +309,6 @@ public class ExportGRLMath implements IURNExport {
 
     }
 
-    // help convert Max/Min(a, b, c, d) into Max(Max(a,b),Max(c,d))
     private StringBuffer MaxmaxFormat(Stack<StringBuffer> subst, String func) throws IOException {
 	Stack<StringBuffer> stMax = new Stack<StringBuffer>();
 	int stSize = subst.size();
@@ -620,7 +610,6 @@ public class ExportGRLMath implements IURNExport {
 		    if (ele.getImportanceQuantitative() == 0) {
 			continue;
 		    }
-		    // actorTimesQua.add(ele.getName() + Times + ele.getImportanceQuantitative());
 		    actorTimesQua.add(eleForMap.get(ele) + Times + "100.0");
 		}
 	    }
@@ -645,7 +634,7 @@ public class ExportGRLMath implements IURNExport {
 	formula = new StringBuffer();
 	formula.append("Piecewise");
 	formula.append(LeftBracker);
-	if ((worst == threshold) && (threshold == target)) {//warning
+	if ((worst == threshold) && (threshold == target)) {// warning
 	    System.out.println("Warning: the three value should not be equal");
 	}
 	if (worst < target) {
@@ -867,8 +856,7 @@ public class ExportGRLMath implements IURNExport {
 
 	name = name.replaceAll("[\\s]+", "_");
 	name = name.replaceAll("[^a-zA-Z0-9\\_]+", "");
-	// name = name.replaceAll("^[0-9]", "_$1");
-	Pattern pattern = Pattern.compile("^[0-9]"); // 正则匹配
+	Pattern pattern = Pattern.compile("^[0-9]");
 	Matcher matcher = pattern.matcher(name);
 	while (matcher.find()) {
 	    name = "_" + name;
