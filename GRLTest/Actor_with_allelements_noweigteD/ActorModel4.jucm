@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<urn:URNspec xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:grl="http:///grl.ecore" xmlns:urn="http:///urn.ecore" name="Actor_with_allelements_noweigted" author="Yuxuan Fan" created="April 11, 2018 3:21:15 PM EDT" modified="April 11, 2018 6:45:38 PM EDT" specVersion="5" urnVersion="1.27" nextGlobalID="96">
+  <ucmspec>
+    <scenarioGroups name="ScenarioGroup5" id="5">
+      <scenarios name="ScenarioDef6" id="6"/>
+    </scenarioGroups>
+  </ucmspec>
+  <grlspec>
+    <intElements name="B" id="82" linksDest="90 91" type="Goal" refs="83"/>
+    <intElements name="C" id="84" linksSrc="90" type="Goal" refs="85"/>
+    <intElements name="D" id="86" linksSrc="91" type="Goal" refs="87"/>
+    <intElements name="E" id="93" type="Goal" refs="94"/>
+    <actors name="Actor" id="49" contRefs="50"/>
+    <links xsi:type="grl:Decomposition" name="Decomposition90" id="90" refs="//@urndef/@specDiagrams.0/@connections.0" dest="82" src="84"/>
+    <links xsi:type="grl:Decomposition" name="Decomposition91" id="91" refs="//@urndef/@specDiagrams.0/@connections.1" dest="82" src="86"/>
+    <groups name="StrategiesGroup3" id="3" strategies="4"/>
+    <strategies name="EvaluationStrategy4" id="4" author="rebeccafan" group="3"/>
+    <impactModel/>
+    <indicatorGroup name="Time" id="7" isRedesignCategory="true"/>
+    <indicatorGroup name="Cost" id="8" isRedesignCategory="true"/>
+    <indicatorGroup name="Quality" id="9" isRedesignCategory="true"/>
+    <indicatorGroup name="Flexibility" id="10" isRedesignCategory="true"/>
+    <featureModel/>
+  </grlspec>
+  <urndef>
+    <specDiagrams xsi:type="grl:GRLGraph" name="GRLGraph2" id="2">
+      <nodes xsi:type="grl:IntentionalElementRef" name="IntentionalElementRef83" id="83" x="352" y="143" contRef="50" pred="//@urndef/@specDiagrams.0/@connections.0 //@urndef/@specDiagrams.0/@connections.1" def="82">
+        <metadata name="_width" value="62"/>
+        <metadata name="_height" value="51"/>
+      </nodes>
+      <nodes xsi:type="grl:IntentionalElementRef" name="IntentionalElementRef85" id="85" x="280" y="258" contRef="50" succ="//@urndef/@specDiagrams.0/@connections.0" def="84">
+        <metadata name="_width" value="62"/>
+        <metadata name="_height" value="54"/>
+      </nodes>
+      <nodes xsi:type="grl:IntentionalElementRef" name="IntentionalElementRef87" id="87" x="405" y="255" contRef="50" succ="//@urndef/@specDiagrams.0/@connections.1" def="86">
+        <metadata name="_width" value="63"/>
+        <metadata name="_height" value="57"/>
+      </nodes>
+      <nodes xsi:type="grl:IntentionalElementRef" name="IntentionalElementRef94" id="94" x="236" y="176" contRef="50" def="93">
+        <metadata name="_width" value="53"/>
+        <metadata name="_height" value="44"/>
+      </nodes>
+      <contRefs xsi:type="grl:ActorRef" name="ActorRef50" id="50" x="178" y="73" width="394" height="337" contDef="49" nodes="83 85 87 94">
+        <label/>
+      </contRefs>
+      <connections xsi:type="grl:LinkRef" source="85" target="83" link="90"/>
+      <connections xsi:type="grl:LinkRef" source="87" target="83" link="91"/>
+      <comments description="If none of the top-level intentional elements has a weight, then these top-level intentional elements should be weighted equally." x="65" y="89" width="113" height="102" fillColor="255,255,200"/>
+    </specDiagrams>
+  </urndef>
+  <metadata name="_Use0to100EvaluationRange" value="false"/>
+  <dynamicContexts name="DynamicContext12" id="12" groups="11"/>
+  <dynamicContextGroups name="DynamicContextGroup11" id="11" contexts="12"/>
+  <timepointGroups/>
+</urn:URNspec>

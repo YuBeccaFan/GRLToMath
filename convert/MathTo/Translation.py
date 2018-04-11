@@ -28,7 +28,7 @@ def Translate(formula,dep,args,Type):
         i = i+1
         exec(arg)
         
-    func = simplify(eval(formula)).evalf()
+    func = simplify(eval(formula)).evalf(4)
     #print func
     if Type == "java":
         convertToJava(jcode(func),dep,args).writeMath()

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<urn:URNspec xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:grl="http:///grl.ecore" xmlns:urn="http:///urn.ecore" name="AndDecomposition" author="Yuxuan Fan" created="April 11, 2018 1:17:45 PM EDT" modified="April 11, 2018 6:29:48 PM EDT" specVersion="7" urnVersion="1.27" nextGlobalID="38">
+  <ucmspec>
+    <scenarioGroups name="ScenarioGroup5" id="5">
+      <scenarios name="ScenarioDef6" id="6"/>
+    </scenarioGroups>
+  </ucmspec>
+  <grlspec>
+    <intElements name="A" id="25" linksDest="35 36 37" type="Goal" refs="26"/>
+    <intElements name="B" id="27" linksSrc="35" type="Goal" refs="28"/>
+    <intElements name="C" id="29" linksSrc="36" type="Goal" refs="30"/>
+    <intElements name="D" id="31" linksSrc="37" type="Goal" refs="32"/>
+    <links xsi:type="grl:Decomposition" name="Decomposition35" id="35" refs="//@urndef/@specDiagrams.0/@connections.0" dest="25" src="27"/>
+    <links xsi:type="grl:Decomposition" name="Decomposition36" id="36" refs="//@urndef/@specDiagrams.0/@connections.1" dest="25" src="29"/>
+    <links xsi:type="grl:Decomposition" name="Decomposition37" id="37" refs="//@urndef/@specDiagrams.0/@connections.2" dest="25" src="31"/>
+    <groups name="StrategiesGroup3" id="3" strategies="4"/>
+    <strategies name="EvaluationStrategy4" id="4" author="rebeccafan" group="3"/>
+    <impactModel/>
+    <indicatorGroup name="Time" id="7" isRedesignCategory="true"/>
+    <indicatorGroup name="Cost" id="8" isRedesignCategory="true"/>
+    <indicatorGroup name="Quality" id="9" isRedesignCategory="true"/>
+    <indicatorGroup name="Flexibility" id="10" isRedesignCategory="true"/>
+    <featureModel/>
+  </grlspec>
+  <urndef>
+    <specDiagrams xsi:type="grl:GRLGraph" name="GRLGraph2" id="2">
+      <nodes xsi:type="grl:IntentionalElementRef" name="IntentionalElementRef26" id="26" x="314" y="130" pred="//@urndef/@specDiagrams.0/@connections.0 //@urndef/@specDiagrams.0/@connections.1 //@urndef/@specDiagrams.0/@connections.2" def="25">
+        <metadata name="_height" value="61"/>
+        <metadata name="_width" value="130"/>
+      </nodes>
+      <nodes xsi:type="grl:IntentionalElementRef" name="IntentionalElementRef28" id="28" x="163" y="216" succ="//@urndef/@specDiagrams.0/@connections.0" def="27">
+        <metadata name="_height" value="45"/>
+        <metadata name="_width" value="110"/>
+      </nodes>
+      <nodes xsi:type="grl:IntentionalElementRef" name="IntentionalElementRef30" id="30" x="321" y="259" succ="//@urndef/@specDiagrams.0/@connections.1" def="29">
+        <metadata name="_height" value="45"/>
+        <metadata name="_width" value="110"/>
+      </nodes>
+      <nodes xsi:type="grl:IntentionalElementRef" name="IntentionalElementRef32" id="32" x="485" y="226" succ="//@urndef/@specDiagrams.0/@connections.2" def="31">
+        <metadata name="_height" value="45"/>
+        <metadata name="_width" value="110"/>
+      </nodes>
+      <connections xsi:type="grl:LinkRef" source="28" target="26" link="35"/>
+      <connections xsi:type="grl:LinkRef" source="30" target="26" link="36"/>
+      <connections xsi:type="grl:LinkRef" source="32" target="26" link="37"/>
+      <comments description="The relations between the contributing elements are &#x201c;AND&#x201d;" x="161" y="61" width="119" height="84" fillColor="255,255,200"/>
+    </specDiagrams>
+  </urndef>
+  <metadata name="_Use0to100EvaluationRange" value="false"/>
+  <dynamicContexts name="DynamicContext12" id="12" groups="11"/>
+  <dynamicContextGroups name="DynamicContextGroup11" id="11" contexts="12"/>
+  <timepointGroups/>
+</urn:URNspec>
