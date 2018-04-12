@@ -1,2 +1,2 @@
 IndicatortargetmorethanworsT <- function( Indicator1){
-	expr = ifelse(Indicator1 >= 300.0,100.0,ifelse(Indicator1 > 200.0,1.0*abs(5.0e-5*Indicator1 - 0.01) + 50.0,ifelse(Indicator1 > 30.0 & Indicator1 < 200.0,-1.0*abs(2.94117647058824e-5*Indicator1 - 0.00588235294117647) + 50.0,0))) }
+	expr = ifelse(Indicator1 >= 300.0,100.0,ifelse(Indicator1 >= 200.0,1.0*abs(5.0e-5*Indicator1 - 0.01) + 50.0,ifelse(Indicator1 > 30.0,-1.0*abs(2.94117647058824e-5*Indicator1 - 0.00588235294117647) + 50.0,0))) }

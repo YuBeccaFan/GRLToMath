@@ -5,7 +5,7 @@ import sys
 #inital all the variable
 Indicator1=Symbol('Indicator1')
 #The function of Model
-IndicatortargetmorethanworsT=((Piecewise((100,Indicator1>=300.0),(abs( (Indicator1-200.0)/20000.0)+50,(200.0<Indicator1)&(Indicator1<300.0)),(-abs( (Indicator1-200.0)/-34000.0)+50,(30.0<Indicator1)&(Indicator1<200.0)),(0,True)))*100.0)/100
+IndicatortargetmorethanworsT=((Piecewise((100,Indicator1>=300.0),(abs( (Indicator1-200.0)/20000.0)+50,(200.0<=Indicator1)&(Indicator1<300.0)),(-abs( (Indicator1-200.0)/-34000.0)+50,(30.0<Indicator1)&(Indicator1<200.0)),(0,True)))*100.0)/100
 modelName = 'IndicatortargetmorethanworsT' 
 List=['Indicator1']#variable list
 LANG = ''
@@ -13,7 +13,7 @@ langList = ['python','c','c++','java',"javascript",'matlab','r']
 def allPrint():
 	for j in langList:
 		LANG = str(j)
-		Translate('((Piecewise((100,Indicator1>=300.0),(abs( (Indicator1-200.0)/20000.0)+50,(200.0<Indicator1)&(Indicator1<300.0)),(-abs( (Indicator1-200.0)/-34000.0)+50,(30.0<Indicator1)&(Indicator1<200.0)),(0,True)))*100.0)/100',modelName,List,LANG)
+		Translate('((Piecewise((100,Indicator1>=300.0),(abs( (Indicator1-200.0)/20000.0)+50,(200.0<=Indicator1)&(Indicator1<300.0)),(-abs( (Indicator1-200.0)/-34000.0)+50,(30.0<Indicator1)&(Indicator1<200.0)),(0,True)))*100.0)/100',modelName,List,LANG)
 if(len(sys.argv)==1):
 	allPrint()
 else:
@@ -26,4 +26,4 @@ else:
 		else:
 			print 'in'
 			LANG = str(i.lower())
-			Translate('((Piecewise((100,Indicator1>=300.0),(abs( (Indicator1-200.0)/20000.0)+50,(200.0<Indicator1)&(Indicator1<300.0)),(-abs( (Indicator1-200.0)/-34000.0)+50,(30.0<Indicator1)&(Indicator1<200.0)),(0,True)))*100.0)/100',modelName,List,LANG)
+			Translate('((Piecewise((100,Indicator1>=300.0),(abs( (Indicator1-200.0)/20000.0)+50,(200.0<=Indicator1)&(Indicator1<300.0)),(-abs( (Indicator1-200.0)/-34000.0)+50,(30.0<Indicator1)&(Indicator1<200.0)),(0,True)))*100.0)/100',modelName,List,LANG)
