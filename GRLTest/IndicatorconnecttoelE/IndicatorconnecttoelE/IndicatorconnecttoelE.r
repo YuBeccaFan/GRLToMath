@@ -1,0 +1,2 @@
+IndicatorconnecttoelE <- function( Indicator3){
+	expr = ifelse(Indicator3 <= -100.0,25.0,ifelse(Indicator3 <= 200.0,1.0*min(100.0, 12.5*abs(0.00333333333333333*Indicator3 - 0.666666666666667) + 12.5),ifelse(Indicator3 < 500.0,1.0*max(0, -12.5*abs(0.00333333333333333*Indicator3 - 0.666666666666667) + 12.5),0))) }

@@ -42,6 +42,8 @@ public class ExportGRLMath implements IURNExport {
 	public static final String Divide = "/";
 	public static final String Plus = "+";
 	public static final String Minus = "-";
+	public static final String Multi = "*";
+	
 
 	private Map<IntentionalElement, StringBuffer> eleForMap;// store elements and the functions .
 
@@ -373,7 +375,7 @@ public class ExportGRLMath implements IURNExport {
 	private void writeActor(URNspec urn) throws IOException {
 		actorForMap = new HashMap<Actor, StringBuffer>();
 		StringBuffer formula;
-		StringBuffer function;// 还要判断一下 里面有没有东西
+		StringBuffer function;// è¿˜è¦�åˆ¤æ–­ä¸€ä¸‹ é‡Œé�¢æœ‰æ²¡æœ‰ä¸œè¥¿
 		for (Iterator it = urn.getGrlspec().getActors().iterator(); it.hasNext();) {
 			Actor actor = (Actor) it.next();
 			function = new StringBuffer();
@@ -622,16 +624,18 @@ public class ExportGRLMath implements IURNExport {
 			formula.append(Double.toString(threshold));
 			formula.append(RightBracker);
 			formula.append(Divide);
-			double diNum = (target - threshold) * 200;
+			double diNum = (target - threshold); // * 200; removed by Amal
 			formula.append(Double.toString(diNum));
 			formula.append(RightBracker);
+			formula.append(Multi); // added by Amal
+			formula.append("50"); // added by Amal
 			formula.append(Plus);
 			formula.append("50");
 			formula.append(Comma);
 
 			formula.append("(");
 			formula.append(Double.toString(threshold));
-			formula.append("<");
+			formula.append("<="); // ("<") changed by Amal
 			formula.append(currentName);
 			formula.append(")");
 			formula.append("&");
@@ -642,7 +646,6 @@ public class ExportGRLMath implements IURNExport {
 			formula.append(")");
 			formula.append(RightBracker);
 			formula.append(Comma);
-
 			formula.append(LeftBracker);
 			formula.append("-abs( ");
 			formula.append(LeftBracker);
@@ -651,9 +654,11 @@ public class ExportGRLMath implements IURNExport {
 			formula.append(Double.toString(threshold));
 			formula.append(RightBracker);
 			formula.append(Divide);
-			double diNum2 = (worst - threshold) * 200;
+			double diNum2 = (worst - threshold); // * 200; removed by Amal
 			formula.append(Double.toString(diNum2));
 			formula.append(RightBracker);
+			formula.append(Multi); // added by Amal
+			formula.append("50"); // added by Amal
 			formula.append(Plus);
 			formula.append("50");
 
@@ -699,9 +704,11 @@ public class ExportGRLMath implements IURNExport {
 			formula.append(Double.toString(threshold));
 			formula.append(RightBracker);
 			formula.append(Divide);
-			double diNum = (target - threshold) * 200;
+			double diNum = (threshold - target); // (target - threshold) * 200; changed by Amal
 			formula.append(Double.toString(diNum));
 			formula.append(RightBracker);
+			formula.append(Multi); // added by Amal
+			formula.append("50"); // added by Amal
 			formula.append(Plus);
 			formula.append("50");
 
@@ -714,7 +721,7 @@ public class ExportGRLMath implements IURNExport {
 			formula.append("&");
 			formula.append("(");
 			formula.append(currentName);
-			formula.append("<");
+			formula.append("<="); // ("<") changed by Amal
 			formula.append(Double.toString(threshold));
 			formula.append(")");
 			formula.append(RightBracker);
@@ -728,9 +735,11 @@ public class ExportGRLMath implements IURNExport {
 			formula.append(Double.toString(threshold));
 			formula.append(RightBracker);
 			formula.append(Divide);
-			double diNum2 = (worst - threshold) * 200;
+			double diNum2 = (threshold- worst); // (worst - threshold); * 200; changed by Amal
 			formula.append(Double.toString(diNum2));
 			formula.append(RightBracker);
+			formula.append(Multi); // added by Amal
+			formula.append("50"); // added by Amal
 			formula.append(Plus);
 			formula.append("50");
 
@@ -764,7 +773,7 @@ public class ExportGRLMath implements IURNExport {
 
 	// not working
 	private void writeTranslation(URNspec urn) throws IOException {
-		// 需要判断的 是actor 还是goal 还是indicator
+		// éœ€è¦�åˆ¤æ–­çš„ æ˜¯actor è¿˜æ˜¯goal è¿˜æ˜¯indicator
 		String modelName = modifyName(urn.getName());
 		write("modelName " + Equal + " '" + modifyName(urn.getName()) + "' " + "\n");
 		StringBuffer varList = new StringBuffer();
@@ -774,7 +783,7 @@ public class ExportGRLMath implements IURNExport {
 		varList.append("[");
 		List<String> eleList = new ArrayList<String>();
 		eleList.addAll(elementSet);
-		// String message = String.join("-", list); 
+		// StringÂ messageÂ =Â String.join("-",Â list);Â 
 		varList.append(String.join(",", eleList));
 		varList.append("]");
 		write(varList.toString());
